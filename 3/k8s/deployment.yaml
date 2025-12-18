@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ip-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ip-app
+  template:
+    metadata:
+      labels:
+        app: ip-app
+    spec:
+      containers:
+        - name: ip-app
+          image: zickam/web_app:tagname
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: API_VERSION
+              value: "1"
+          ports:
+            - containerPort: 8000
+
